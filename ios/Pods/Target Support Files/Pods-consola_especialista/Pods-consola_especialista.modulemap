@@ -1,0 +1,6 @@
+module Pods_consola_especialista {
+  umbrella header "Pods-consola_especialista-umbrella.h"
+
+  export *
+  module * { export * }
+}

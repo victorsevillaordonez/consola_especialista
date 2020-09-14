@@ -1,6 +1,0 @@
-module Pods_ReactNativeBridgeDemo_ReactNativeBridgeDemoTests {
-  umbrella header "Pods-ReactNativeBridgeDemo-ReactNativeBridgeDemoTests-umbrella.h"
-
-  export *
-  module * { export * }
-}

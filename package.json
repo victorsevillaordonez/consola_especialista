@@ -10,6 +10,7 @@
     "lint": "eslint ."
   },
   "dependencies": {
+    "aranda_common": "file:/Users/victorsevilla/Documents/aranda_common",
     "react": "16.13.1",
     "react-native": "0.63.2"
   },

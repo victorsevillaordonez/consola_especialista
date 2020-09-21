@@ -11,6 +11,8 @@
   },
   "dependencies": {
     "aranda_common": "file:/Users/victorsevilla/Documents/aranda_common",
+    "aranda_common_service": "/Users/victorsevilla/Documents/Poryectos Repo/aranda.mobile.common/",
+    "file": "^0.2.2",
     "react": "16.13.1",
     "react-native": "0.63.2"
   },

@@ -30,36 +30,31 @@ import {
   AUICardPresent,
   AUICardTouch,
 } from "aranda_common";
-import getItemList from "./services/service-item-list";
+import { useService } from "aranda_common_service";
 
 export default function App() {
-  const [selected, setSelected] = React.useState(new Map());
-  const [isLoading, setLoading] = useState(true);
-  const [data, setData] = useState([]);
-  const [selectedId, setSelectedId] = useState(null);
+  const [users, isLoading] = useService(
+    "https://jsonplaceholder.typicode.com/users"
+  );
+  const Item = ({ title }) => (
+    <View style={styles.item}>
+      <Text style={styles.title}>{title}</Text>
+    </View>
+  );
 
-  useEffect(() => {
-    getItemList()
-      .then((json) => setData(json.SearchAdvancedResult.data))
-      .catch((error) => console.error(error))
-      .finally(() => setLoading(false));
-  });
-
-  const renderItem = ({ item }) => {
-    return (
-      <AUICardTouch obJCase={item} onPress={() => setSelectedId(item.id)} />
-    );
-  };
-
+  const renderItem = ({ item }) => <Item title={item.name} />;
+  if (isLoading) {
+    <Text>Cargando...</Text>;
+  }
   return (
     <>
       <StatusBar barStyle="dark-content" />
-      <SafeAreaView>
+
+      <SafeAreaView style={styles.container}>
         <FlatList
-          data={data}
+          data={users}
           renderItem={renderItem}
           keyExtractor={(item) => item.id}
-          extraData={selectedId}
         />
       </SafeAreaView>
     </>
@@ -67,40 +62,18 @@ export default function App() {
 }
 
 const styles = StyleSheet.create({
-  scrollView: {
-    backgroundColor: Colors.lighter,
+  container: {
+    flex: 1,
+    marginTop: StatusBar.currentHeight || 0,
   },
-  engine: {
-    position: "absolute",
-    right: 0,
+  item: {
+    backgroundColor: "#6A985B",
+    padding: 5,
+    marginVertical: 5,
+    marginHorizontal: 15,
   },
-  body: {
-    backgroundColor: Colors.white,
-  },
-  sectionContainer: {
-    marginTop: 32,
-    paddingHorizontal: 24,
-  },
-  sectionTitle: {
-    fontSize: 24,
-    fontWeight: "600",
-    color: Colors.black,
-  },
-  sectionDescription: {
-    marginTop: 8,
-    fontSize: 18,
-    fontWeight: "400",
-    color: Colors.dark,
-  },
-  highlight: {
-    fontWeight: "700",
-  },
-  footer: {
-    color: Colors.dark,
-    fontSize: 12,
-    fontWeight: "600",
-    padding: 4,
-    paddingRight: 12,
-    textAlign: "right",
+  title: {
+    color: "white",
+    fontSize: 20,
   },
 });

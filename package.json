@@ -10,7 +10,8 @@
     "lint": "eslint ."
   },
   "dependencies": {
-    "aranda_common": "file:/Users/victorsevilla/Documents/aranda_common",
+    "aranda.mobile.common": "/Users/victorsevilla/Documents/Poryectos Repo/aranda.mobile.common/",
+    "aranda.mobile.ui": "/Users/victorsevilla/Documents/Poryectos Repo/aranda.mobile.ui/",
     "aranda_common_service": "/Users/victorsevilla/Documents/Poryectos Repo/aranda.mobile.common/",
     "file": "^0.2.2",
     "react": "16.13.1",

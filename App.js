@@ -25,12 +25,9 @@ import {
   ReloadInstructions,
 } from "react-native/Libraries/NewAppScreen";
 import {
-  AUILabel,
-  AUIButton,
-  AUICardPresent,
-  AUICardTouch,
-} from "aranda_common";
-import { useService } from "aranda_common_service";
+  AMUILabel
+} from "aranda.mobile.ui";
+import { useService } from "aranda.mobile.common";
 
 export default function App() {
   const [users, isLoading] = useService(
@@ -38,7 +35,11 @@ export default function App() {
   );
   const Item = ({ title }) => (
     <View style={styles.item}>
-      <Text style={styles.title}>{title}</Text>
+      <AMUILabel params={{
+          color: "white",
+          fontSize: 12,
+          text: title,
+        }}/>
     </View>
   );
 

@@ -36,6 +36,7 @@ export default function LoginScreen({ route }) {
             marginLeft: 40,
             marginRight: 40,
             borderWidth: 1,
+            padding: 1,
           }}
         >
           <Button title="Login" color="#f3846c" />

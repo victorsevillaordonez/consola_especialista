@@ -10,16 +10,25 @@ export default function LoginScreen({ route }) {
       }}
     >
       <Image
-        style={{ flex: 2 }}
+        style={{ flex: 2, resizeMode: "contain", marginLeft: 20 }}
         source={require("../assets/login_image.png")}
       />
       <View style={{ flex: 2 }}>
-        <TextInput placeholder="Usuario"></TextInput>
-        <TextInput placeholder="Contraseña"></TextInput>
+        <TextInput
+          placeholder="Usuario"
+          style={{ backgroundColor: "white", padding: 10, margin: 10 }}
+        ></TextInput>
+        <TextInput
+          placeholder="Contraseña"
+          style={{ backgroundColor: "white", padding: 10, margin: 10 }}
+        ></TextInput>
       </View>
-      <View>
-        <Button>
-        </Button>
+      <View
+        style={{
+          flex: 1,
+        }}
+      >
+        <Button title="Login" backgroundColor="white" color="#f3846c"></Button>
       </View>
     </View>
   );

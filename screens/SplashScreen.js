@@ -31,7 +31,7 @@ export default class SplashScreen extends Component {
       () => {
         this.goToScreen("Login");
       },
-      3000,
+      2000,
       this
     );
   }

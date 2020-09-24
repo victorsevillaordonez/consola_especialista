@@ -28,7 +28,18 @@ export default function LoginScreen({ route }) {
           flex: 1,
         }}
       >
-        <Button title="Login" backgroundColor="white" color="#f3846c"></Button>
+        <View
+          style={{
+            borderColor: "white",
+            backgroundColor: "white",
+            borderRadius: 8,
+            marginLeft: 40,
+            marginRight: 40,
+            borderWidth: 1,
+          }}
+        >
+          <Button title="Login" color="#f3846c" />
+        </View>
       </View>
     </View>
   );

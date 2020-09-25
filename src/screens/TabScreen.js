@@ -17,7 +17,7 @@ export default function TabScreen() {
         tabBarIcon: ({ focused, color, size }) => {
           if (route.name === "Home") {
             return (
-              <IconAntDesign name="pluscircleo" size={50} />
+              <Ionicons  name="pluscircleo" size={50} />
               //   <Ionicons
               //     name={
               //       focused
@@ -31,14 +31,20 @@ export default function TabScreen() {
           } else if (route.name === "Settings") {
             return <IconAntDesign name="pluscircleo" size={50} />;
           }
+          return <IconAntDesign name="caretup" size={30} />;
         },
       })}
       tabBarOptions={{
         activeTintColor: "tomato",
         inactiveTintColor: "gray",
+        labelStyle: {
+          fontSize: 13,
+          margin: 0,
+          padding: 0,
+        },
       }}
     >
-      <Tab.Screen name="Mi portal" component={MyPortalScreen} />
+      <Tab.Screen name="Mi portal" component={MyPortalScreen}  />
       <Tab.Screen name="Nuevo caso" component={NewCaseScreen} />
       <Tab.Screen name="Mis solicitudes" component={MyRequestsScreen} />
       <Tab.Screen name="Asistencia" component={AssistanceScreen} />

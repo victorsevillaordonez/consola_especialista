@@ -1,66 +1,35 @@
 import React from "react";
 import { NavigationContainer } from "@react-navigation/native";
 import { createStackNavigator } from "@react-navigation/stack";
-import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
-// import { createStackNavigator } from "@react-navigation/stack";
-import { createAppContainer, createSwitchNavigator } from "react-navigation";
 import TabScreen from "./../screens/TabScreen";
-
-// import {AuthLoadingScreen} from '../screens/Auth/AuthLoadingScreen'
 import LoginScreen from "../screens/Auth/LoginScreen";
 import SplashScreen from "../screens/Auth/SplashScreen";
-import { Switch } from "react-native-gesture-handler";
-//
+import { AsyncStorage } from "react-native";
 
-// const AppStack = createStackNavigator({ TabScreen });
-// const AuthStack = createStackNavigator();
-// {
-/* <AuthStack.Navigator initialRouteName="Login">
-  <AuthStack.Screen
-    name="Login"
-    component={LoginScreen}
-    options={{ headerShown: false }}
-  />
-</AuthStack.Navigator>; */
-// }
-// const AppStackScreen = createAppContainer(
-//   createSwitchNavigator(
-//     {
-//       Starter: AuthLoadingScreen,
-//       // App: AppStack,
-//       Auth: AuthStack,
-//     },
-//     {
-//       initialRouteName: "Starter",
-//     }
-//   )
-// );
+const isLogged = async () => {
+  const userToken = await AsyncStorage.getItem("userToken");
+  const isLoggedIn = userToken !== null && userToken !== "";
+  return isLoggedIn;
+};
 
-// const AuthStack = createCompatNavigatorFactory(createStackNavigator)({ screen:LoginScreen });
-// const SwitchNavigator = createSwitchNavigator({
-//   Starter: AuthStack ,
-//   App: AuthStack,
-//   Auth: AuthStack,
-// },{
-//   initialRouteName:'Starter'
-// });
-
-const Stack = createStackNavigator();
-
-function AppNavigation() {
-  const isLoggedIn = false;
+const AppNavigation = () => {
+  var isLoggedIn = isLogged();
+  isLoggedIn = false 
+  console.log("isLoggedIn:"+isLoggedIn)
+  const Stack = createStackNavigator();
   return (
     <NavigationContainer>
       {isLoggedIn ? (
         <TabScreen />
       ) : (
-        <Stack.Navigator>
+        <Stack.Navigator> 
           <Stack.Screen name="Splash" component={SplashScreen} />
           <Stack.Screen name="Login" component={LoginScreen} />
+          <Stack.Screen name="TabScreen" component={TabScreen} />
         </Stack.Navigator>
       )}
     </NavigationContainer>
   );
-}
+};
 
 export default AppNavigation;

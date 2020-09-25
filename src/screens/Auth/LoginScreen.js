@@ -1,5 +1,6 @@
 import React from "react";
 import { CommonActions } from "@react-navigation/native";
+import { NavigationActions } from "react-navigation";
 import {
   Button,
   Image,
@@ -16,6 +17,10 @@ export default class LoginScreen extends React.Component {
     header: null,
   };
 
+  async componentDidMount() {
+    await this._getCache();
+  }
+
   constructor(props) {
     super(props);
 
@@ -29,36 +34,42 @@ export default class LoginScreen extends React.Component {
     this._signInHandler = this._signInHandler.bind(this);
   }
 
-  _signInHandler = async () => {
-    // this.props.navigation.navigate("Mi portal");
-    this.props.navigation.dispatch(
-      CommonActions.navigate({
-        name: "Mi portal"
-      })
-    );
+  _getCache = async () => {
+    const userToken = await AsyncStorage.getItem("userName");
+    const password = await AsyncStorage.getItem("password");
+     
+    this.setState({ email: userToken });
+    this.setState({ password: password });
+  };
 
+  _signInHandler = async () => {
     const { email, password } = this.state;
+
     this.setState({ spinner: true });
     const { data } = await loginFetch(email, password);
     const status = data.status;
     this.setState({ spinner: false });
-
+    
     switch (status) {
+      case 307:
       case 400:
         alert("Usuario y contraseña no válidos");
         break;
       case 404:
         alert("Usuario o contraseña inválida");
         break;
-      case 200:
-        {
-          // const response = await data.json();
+      case 200: 
+        { 
+          const response = await data.json();
+          console.log(response) 
+          console.log(email) 
           const authorization = data.headers.map.authorization;
 
           await AsyncStorage.setItem("userToken", authorization);
           await AsyncStorage.setItem("userName", email);
           await AsyncStorage.setItem("password", password);
           this.props.navigation.navigate("TabScreen");
+          // this.props.navigation.replace("TabScreen");
         }
         break;
     }

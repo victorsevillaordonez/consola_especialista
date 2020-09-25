@@ -4,7 +4,7 @@ const loginFetch = async (username, password) => {
   var data = [];
 
   let urlFull =
-    "http://192.168.3.31/ASMS_API/api/v9/authentication";
+    "http://192.168.3.31/ASMS_API/api/v9/authentication/";
 
   let body = {
     password: password,

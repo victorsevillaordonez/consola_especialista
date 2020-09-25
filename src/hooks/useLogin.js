@@ -10,23 +10,23 @@ const loginFetch = async (username, password) => {
     password: password,
     userName: username
   };
-  
+  console.log(JSON.stringify(body))
   let setttings = {
     method: "POST",
     body: JSON.stringify(body),
     headers: {
-      Accept: "application/json",
+      // Accept: "application/json",
       "Content-Type": "application/json",
     },
   };
 
   const fetchData = async () => {
     const response = await fetch(urlFull, setttings).catch((error) => {
+      console.log("ERROR");
       console.log(error);
     });
     if (typeof response !== "undefined") {
       data = response;
-    //   console.log(data);
     }
   };
 

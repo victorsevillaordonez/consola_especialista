@@ -7,8 +7,8 @@ import SplashScreen from "../screens/Auth/SplashScreen";
 import { AsyncStorage } from "react-native";
 
 const isLogged = async () => {
-  const userToken = await AsyncStorage.getItem("userToken");
-  const isLoggedIn = userToken !== null && userToken !== "";
+  const authorization = await AsyncStorage.getItem("authorization");
+  const isLoggedIn = authorization !== null && authorization !== "";
   return isLoggedIn;
 };
 

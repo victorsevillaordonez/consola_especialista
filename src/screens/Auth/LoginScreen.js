@@ -49,7 +49,7 @@ export default class LoginScreen extends React.Component {
     const { data } = await loginFetch(email, password);
     const status = data.status;
     this.setState({ spinner: false });
-    
+    console.log(data)
     switch (status) {
       case 307:
       case 400:
@@ -61,11 +61,9 @@ export default class LoginScreen extends React.Component {
       case 200: 
         { 
           const response = await data.json();
-          console.log(response) 
-          console.log(email) 
           const authorization = data.headers.map.authorization;
 
-          await AsyncStorage.setItem("userToken", authorization);
+          await AsyncStorage.setItem("authorization", authorization);
           await AsyncStorage.setItem("userName", email);
           await AsyncStorage.setItem("password", password);
           this.props.navigation.navigate("TabScreen");

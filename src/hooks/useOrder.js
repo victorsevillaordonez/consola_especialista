@@ -1,27 +1,19 @@
 import { useState, useEffect } from "react";
 
 
-const orderFetch = () => {
-    const [loading, setLoading] = useState(true);
-    const [data, setData] = useState([]);
+const orderFetch = async() => {
+    var arrData= []
 
-    let pathFullSync = "workorders.svc/json/FullSync"
-    let url = 'http://aflsdesa.arandasoft.com:93/AFLS_DESA_03/afls'
-    let urlFull = url + "/mobv1/" + pathFullSync
+    let project = 1
+    let itemtype = 1
+    let url = 'http://192.168.3.31/ASMS_API/api/v9/item/project/'+project+'/'+itemtype+'/list'
 
     let body = {
-        "lastRequestDate": null,
-        "getStock": true,
-        "workOrders": [],
-        "syncLocations": [],
-        "specialist": "dabril01",
-        "requireSchedule": false,
-        "requestDate": null,
-        "defaultAuth": "ARANDA",
-        "password": "123456",
-        "username": "dabril01",
-        "platform": "iOs",
-        "pushId": ""
+        "pageSize": 10,
+        "pageIndex": 0,
+        "orderField": "Id",
+        "orderType": "asc",
+        "repository": "1",
     }
     let setttings = {
         method: 'POST',
@@ -34,27 +26,18 @@ const orderFetch = () => {
 
     const fetchData = async () => {
 
-        const response = await fetch(urlFull, setttings).catch((error) => {
-            console.log(error);
+        const response = await fetch(url, setttings).catch((error) => {
+            
         });
-
-        let arrWorkOrders = [];
+        console.log("after")
         if (typeof response !== 'undefined') {
-            const dataResponse = await response.json()
-
-            let objFullSyncronizationResult = dataResponse.FullSyncronizationResult;
-            let objEntity = objFullSyncronizationResult.Entity;
-            arrWorkOrders = objEntity.WorkOrders;
+            arrData = await response.json()
         }
-        setData(arrWorkOrders)
-        setLoading(false)
     }
+    await fetchData()
 
-    useEffect(() => {
-        fetchData()
-    }, [])
-
-    return { loading, data };
+    console.log(arrData);
+    return { arrData };
 }
 
 export default orderFetch

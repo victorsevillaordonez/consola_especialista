@@ -47,7 +47,7 @@ export default class SplashScreen extends Component {
       fontSize: 20,
       label: "SERVICE MANAGEMENT",
     };
-    const image = require("../assets/splash.png");
+    const image = require("./../../../assets/splash.png");
 
     return (
       <AMUISplash

@@ -7,7 +7,7 @@
  */
 
 import React, { useEffect, useState } from "react";
-import AppNavigation from './navigation/AppNavigation'
+import AppNavigation from './src/navigation/AppNavigation'
 
 function App(){
   return <AppNavigation/>
